@@ -24,7 +24,7 @@ jobs:
       - run:
           name: "Zowe Version"
           command: |
-            cd /tmp/bin/yarnpkg && ls
+            cd /tmp/bin/ && ls
             zowe -V
       - run:
           name: "Compile Scripts"
