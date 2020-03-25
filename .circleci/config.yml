@@ -2,21 +2,23 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/android:api-28-node8-alpha
+      - image: circleci/node:latest
     working_directory: ~/repo
-    environment:
-      JVM_OPTS: -Xmx3200m
     steps:
       - checkout
       - run:
-          name: "Install ionic and cordova"
+        name: "Check Versions"
+        command: |
+          node -v 
+          npm -v
+      - run:
+          name: "Install zowe and yarn"
           command: |
-            sudo npm install -g yarn --force
+            sudo npm install -g @zowe/cli@latest yarn --force
       - run:
           name: "Install npm packages"
           command: |
             yarn install
-            yarn add @zowe/cli@latest
       - run:
           name: "Compile Scripts"
           command: |
