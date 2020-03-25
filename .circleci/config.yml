@@ -7,10 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Check Versions"
-        command: |
-          node -v 
-          npm -v
+          name: "Check Versions"
+          command: |
+            node -v 
+            npm -v
       - run:
           name: "Install zowe and yarn"
           command: |
