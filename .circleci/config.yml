@@ -4,8 +4,11 @@ jobs:
     docker:
       - image: circleci/node:10.0.0
     working_directory: ~/repo
+    environment:
+      BASH_ENV: ~/.bashrc
     steps:
       - checkout
+      - run: echo '${PATH}'
       - run:
           name: "Check Versions"
           command: |
@@ -20,6 +23,7 @@ jobs:
           command: |
             yarn install
             yarn global add @zowe/cli@latest
+            where zowe
             zowe -V
       - run:
           name: "Compile Scripts"
