@@ -12,13 +12,15 @@ jobs:
             node -v 
             npm -v
       - run:
-          name: "Install zowe"
+          name: "Install yarn"
           command: |
-            sudo npm install -g @zowe/cli
+            sudo npm install -g yarn --force
       - run:
           name: "Install npm packages"
           command: |
-            sudo npm install .
+            yarn install
+            yarn global add @zowe/cli@latest
+            zowe -V
       - run:
           name: "Compile Scripts"
           command: |
@@ -26,7 +28,6 @@ jobs:
       - run:
           name: "Create Zowe Profiles"
           command: |
-            zowe -V
             zowe create profiles zosmf ztrial --host ${zHost} --port ${zPort} --user ${zUser} --password ${zPass} --ru false
       - run:
           name: "Build and Test"
