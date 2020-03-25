@@ -33,6 +33,7 @@ jobs:
           name: "Add to Path"
           command: |
             echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+            echo $BASH_ENV
             echo $PATH
       - run:
           name: "Compile Scripts"
