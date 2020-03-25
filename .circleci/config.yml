@@ -44,7 +44,7 @@ jobs:
           paths:
             - $PATH
           command: |
-            cd /home/circleci/.yarn/bin
+            cd /home/circleci/.yarn/bin && ls
             zowe create profiles zosmf ztrial --host ${zHost} --port ${zPort} --user ${zUser} --password ${zPass} --ru false
       - run:
           name: "Build and Test"
