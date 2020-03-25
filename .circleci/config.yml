@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:10.0.0
     working_directory: ~/repo
     steps:
       - checkout
@@ -14,7 +14,7 @@ jobs:
       - run:
           name: "Install zowe and yarn"
           command: |
-            sudo npm install -g @zowe/cli@latest yarn --force
+            npm install -g @zowe/cli yarn
       - run:
           name: "Install npm packages"
           command: |
