@@ -33,6 +33,7 @@ jobs:
           name: "Add to Path"
           command: |
             echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+            source /home/circleci/.bashrc
             echo $BASH_ENV
       - run:
           name: "Compile Scripts"
@@ -41,8 +42,9 @@ jobs:
       - run:
           name: "Create Zowe Profiles"
           paths:
-            - /home/circleci/.yarn/bin
+            - $PATH
           command: |
+            cd /home/circleci/.yarn/bin
             zowe create profiles zosmf ztrial --host ${zHost} --port ${zPort} --user ${zUser} --password ${zPass} --ru false
       - run:
           name: "Build and Test"
