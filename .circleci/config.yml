@@ -22,7 +22,7 @@ jobs:
       - run: 
           name: "Add to Path"
           command: |
-            export "$PATH:PATH=$(yarn global bin)" >> $BASH_ENV
+            export "PATH=$(yarn global bin):$PATH" >> $BASH_ENV
       - run:
           name: "Compile Scripts"
           command: |
