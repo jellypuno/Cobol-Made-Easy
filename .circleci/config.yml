@@ -12,18 +12,9 @@ jobs:
             node -v 
             npm -v
       - run:
-          name: "Install yarn"
-          command: |
-            sudo npm i -g yarn --force --prefix /tmp && yarn install
-      - run:
           name: "Install zowe"
           command: |
-            yarn add global @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp
-      - run: 
-          name: "Add to Path"
-          command: |
-            export "PATH=$(yarn global bin):$PATH" >> $BASH_ENV
-            cat $BASH_ENV
+            npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp --ignore-scripts
       - run:
           name: "Compile Scripts"
           command: |
