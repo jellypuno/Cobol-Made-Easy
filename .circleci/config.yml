@@ -20,7 +20,7 @@ jobs:
       - run:
           name: "Install zowe"
           command: |
-            yarn global install @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp/zowe
+            yarn add global @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp/zowe
       - run:
           name: "Install npm packages"
           command: |
