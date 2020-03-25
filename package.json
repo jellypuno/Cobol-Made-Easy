@@ -29,6 +29,7 @@
     "@types/mustache": "^0.8.32",
     "@types/node": "^10.11.3",
     "config": "^2.0.1",
-    "mustache": "^3.0.1"
+    "mustache": "^3.0.1",
+    "typescript": "~3.4.3"
   }
 }
