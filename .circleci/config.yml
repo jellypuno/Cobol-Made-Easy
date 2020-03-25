@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: circleci/node:10.0.0
     working_directory: ~/repo
+    environment: 
+      BASH_ENV: $BASH_ENV
     steps:
       - checkout
       - run:
@@ -30,7 +32,8 @@ jobs:
       - run: 
           name: "Add to Path"
           command: |
-            echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV 
+            echo 'export PATH=/home/circleci/.yarn/bin:$PATH' >> $BASH_ENV
+            echo $PATH
       - run:
           name: "Compile Scripts"
           command: |
