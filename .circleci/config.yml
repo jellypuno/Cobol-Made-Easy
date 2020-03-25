@@ -24,8 +24,7 @@ jobs:
       - run:
           name: "Zowe Version"
           command: |
-            which zowe
-            zowe -V
+            yarn global bin
       - run:
           name: "Compile Scripts"
           command: |
