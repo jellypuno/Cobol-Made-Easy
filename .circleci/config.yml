@@ -21,8 +21,8 @@ jobs:
           command: |
             npm run compile:scripts
       - run:
-        name: "Build and Test"
-        command: |
+          name: "Build and Test"
+          command: |
             npm run build
 
 workflows:
