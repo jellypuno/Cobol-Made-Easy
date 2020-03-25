@@ -21,6 +21,11 @@ jobs:
           command: |
             npm run compile:scripts
       - run:
+          name: "Create Zowe Profiles"
+          command: |
+            zowe -V
+            zowe create profiles zosmf ztrial --host ${zHost} --port ${zPort} --user ${zUser} --password ${zPass} --ru false
+      - run:
           name: "Build and Test"
           command: |
             npm run build
