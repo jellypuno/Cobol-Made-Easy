@@ -14,17 +14,20 @@ jobs:
             node -v 
             npm -v
       - run:
+          name: "Install yarn"
+          command: |
+            sudo npm i -g yarn --force
+      - run:
           name: "Install zowe"
           command: |
-            sudo npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp/zowe
+            yarn global install @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp/zowe
       - run:
           name: "Install npm packages"
           command: |
             npm install .
       - run:
-          name: "Check Bin files"
+          name: "Zowe Version"
           command: |
-            cd /tmp/zowe
             zowe -V
       - run:
           name: "Compile Scripts"
