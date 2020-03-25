@@ -16,11 +16,10 @@ jobs:
       - run:
           name: "Install yarn"
           command: |
-            sudo npm install -g yarn --force
+            sudo npm install -g yarn && yarn install
       - run:
           name: "Install npm packages"
           command: |
-            yarn install
             yarn global add @zowe/cli@latest
       - run:
           name: "Check Bin files"
