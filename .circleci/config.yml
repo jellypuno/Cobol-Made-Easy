@@ -24,8 +24,8 @@ jobs:
       - run: 
           name: "Add to Path"
           command: |
-            echo 'export YARN_PATH=/home/circleci/.yarn/bin' >> $BASH_ENV
-            echo $YARN_PATH
+            echo '/home/circleci/.yarn/bin' >> $BASH_ENV
+            echo $BASH_ENV
       - run:
           name: "Compile Scripts"
           command: |
@@ -34,9 +34,7 @@ jobs:
           name: "Create Zowe Profiles"
           shell: "/bin/bash -eo pipefail"
           command: |
-            echo $YARN_PATH
-            cd $YARN_PATH
-            ls
+            cd /home/circleci/.yarn/bin && ls
       - run:
           name: "Build and Test"
           command: |
