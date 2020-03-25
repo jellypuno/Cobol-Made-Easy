@@ -32,7 +32,6 @@ jobs:
             npm run compile:scripts
       - run:
           name: "Create Zowe Profiles"
-          shell: "/bin/bash -eo pipefail"
           command: |
             cd /home/circleci/.yarn/bin && ls
       - run:
