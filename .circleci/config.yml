@@ -20,12 +20,12 @@ jobs:
       - run:
           name: "Install npm packages"
           command: |
-            yarn global add @zowe/cli@latest --prefix /usr/local
+            yarn global add @zowe/cli@latest --prefix /tmp
             which zowe
       - run:
           name: "Check Bin files"
           command: |
-            cd /usr/local/bin/zowe
+            cd /tmp/zowe
             zowe -V
       - run:
           name: "Compile Scripts"
