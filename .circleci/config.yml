@@ -30,7 +30,7 @@ jobs:
       - run:
           name: "Create Zowe Profiles"
           command: |
-            zowe -V
+            $(yarn global bin) zowe -V
       - run:
           name: "Build and Test"
           command: |
