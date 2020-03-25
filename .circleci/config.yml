@@ -4,8 +4,6 @@ jobs:
     docker:
       - image: circleci/node:10.0.0
     working_directory: ~/repo
-    environment:
-      BASH_ENV: ~/.bashrc
     steps:
       - checkout
       - run:
