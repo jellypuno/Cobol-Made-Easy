@@ -16,11 +16,11 @@ jobs:
       - run:
           name: "Install yarn"
           command: |
-            sudo npm i -g yarn --force
+            sudo npm i -g yarn --force --prefix /tmp
       - run:
           name: "Install zowe"
           command: |
-            yarn add global @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp/zowe
+            yarn add global @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp
       - run:
           name: "Install npm packages"
           command: |
