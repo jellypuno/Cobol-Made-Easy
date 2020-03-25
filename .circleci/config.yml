@@ -8,7 +8,10 @@ jobs:
       BASH_ENV: ~/.bashrc
     steps:
       - checkout
-      - run: echo '${PATH}'
+      - run: 
+          name: "Echo Path"
+          command: |
+            echo '${PATH}'
       - run:
           name: "Check Versions"
           command: |
