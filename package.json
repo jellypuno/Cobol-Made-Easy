@@ -1,0 +1,34 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm run compile:scripts",
+    "allocate": "node ./scripts/lib/allocate",
+    "delete": "node ./scripts/lib/delete",
+    "generate": "node ./scripts/lib/generate",
+    "upload:cobol": "zowe zos-files upload file-to-data-set \"./build/source.cbl\" \"Z40607.SOURCE(HELOWRLD)\" --zosmf-p ztrial",
+    "build": "npm run generate && npm run upload:cobol && npm run compile:cobol && npm run run:cobol",
+    "compile:cobol": "zowe jobs submit lf \"./build/compiler.jcl\" --directory \"./output\" --zosmf-p ztrial",
+    "compile:scripts": "tsc --pretty",
+    "run:cobol": "zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
+    "start": "npm run upload && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zowe/cli": "6.7.0"
+  },
+  "peerDependencies": {
+    "@zowe/cli": "^6.0.0",
+    "@zowe/imperative": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/config": "0.0.34",
+    "@types/mustache": "^0.8.32",
+    "@types/node": "^10.11.3",
+    "config": "^2.0.1",
+    "mustache": "^3.0.1"
+  }
+}

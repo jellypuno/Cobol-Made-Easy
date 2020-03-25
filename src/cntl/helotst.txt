@@ -1,0 +1,10 @@
+{{#compiler.job_card2}}
+//{{{.}}}
+{{/compiler.job_card2}}
+//*
+//JOBLIB   DD DSN={{compiler.load_library}},DISP=SHR
+//*
+//STEP0001 EXEC PGM={{initialization.program_name}}
+//SYSIN    DD DUMMY
+//SYSPRINT DD SYSOUT=*
+//

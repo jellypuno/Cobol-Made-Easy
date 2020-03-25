@@ -1,0 +1,19 @@
+{
+    "initialization": {
+        "program_name": "HELOWRLD"
+    },
+    "compiler": {
+        "job_card":[
+            "CBLCMPLR  JOB (CBLCMPLR),'COBOL COMPILER',CLASS=A,",
+            "          MSGLEVEL=(1,1),NOTIFY=&SYSUID"
+        ],
+        "job_card2":[
+            "RUNJOBTM JOB ('124300000'),'RUN JOB',MSGCLASS=X,",
+            "             CLASS=A,NOTIFY=&SYSUID"
+        ],
+        "source_library": "Z40607.SOURCE",
+        "copy_library": "Z40607.COPYLIB",
+        "object_library": "Z40607.OBJ",
+        "load_library": "Z40607.LOADLIB"
+    }
+}
