@@ -16,6 +16,10 @@ jobs:
           command: |
             npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp --ignore-scripts
       - run:
+          name: "Install Packages"
+          command: |
+            npm i .
+      - run:
           name: "Compile Scripts"
           command: |
             npm run compile:scripts
