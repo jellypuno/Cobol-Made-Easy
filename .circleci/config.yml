@@ -24,7 +24,7 @@ jobs:
       - run:
           name: "Zowe Version"
           command: |
-            cd /tmp/ && ls
+            which zowe
             zowe -V
       - run:
           name: "Compile Scripts"
