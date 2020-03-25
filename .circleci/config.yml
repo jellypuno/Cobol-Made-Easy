@@ -25,7 +25,6 @@ jobs:
           name: "Add to Path"
           command: |
             echo 'export YARN_PATH=/home/circleci/.yarn/bin' >> $BASH_ENV
-            cat $BASH_ENV
             echo $YARN_PATH
       - run:
           name: "Compile Scripts"
@@ -36,7 +35,8 @@ jobs:
           shell: "/bin/bash -eo pipefail"
           command: |
             echo $YARN_PATH
-            zowe create profiles zosmf ztrial --host ${zHost} --port ${zPort} --user ${zUser} --password ${zPass} --ru false
+            cd $YARN_PATH
+            ls
       - run:
           name: "Build and Test"
           command: |
