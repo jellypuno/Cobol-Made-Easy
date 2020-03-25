@@ -21,7 +21,6 @@ jobs:
           name: "Install npm packages"
           command: |
             yarn install
-            yarn global remove @zowe/cli@latest
             yarn global add @zowe/cli@latest
       - run:
           name: "Check Bin files"
