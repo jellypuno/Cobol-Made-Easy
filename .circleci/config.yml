@@ -22,7 +22,10 @@ jobs:
           command: |
             yarn install
             yarn global add @zowe/cli@latest
-            cd usr/local/lib
+      - run:
+          name: "Check Bin files"
+          command: |
+            cd usr/local/bin
             ls
             zowe -V
       - run:
