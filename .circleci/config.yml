@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Install zowe"
           command: |
-            sudo npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefiz /tmp/zowe
+            sudo npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --prefix /tmp/zowe
       - run:
           name: "Install npm packages"
           command: |
