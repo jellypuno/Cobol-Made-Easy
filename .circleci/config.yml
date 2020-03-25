@@ -41,7 +41,7 @@ jobs:
       - run:
           name: "Create Zowe Profiles"
           paths:
-            - $PATH
+            - /home/circleci/.yarn/bin
           command: |
             zowe create profiles zosmf ztrial --host ${zHost} --port ${zPort} --user ${zUser} --password ${zPass} --ru false
       - run:
