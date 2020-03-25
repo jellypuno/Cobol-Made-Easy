@@ -4,8 +4,6 @@ jobs:
     docker:
       - image: circleci/node:10.0.0
     working_directory: ~/repo
-    environment:
-      BASH_ENV: /home/circleci/.bashrc
     steps:
       - checkout
       - run:
@@ -24,9 +22,7 @@ jobs:
       - run: 
           name: "Add to Path"
           command: |
-            export PATH="$(yarn global bin):$PATH"
-            source $BASH_ENV
-            echo $BASH_ENV
+            export "$PATH:PATH="$(yarn global bin)"
       - run:
           name: "Compile Scripts"
           command: |
