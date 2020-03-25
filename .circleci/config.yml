@@ -8,10 +8,6 @@ jobs:
       BASH_ENV: ~/.bashrc
     steps:
       - checkout
-      - run: 
-          name: "Echo Path"
-          command: |
-            echo '${PATH}'
       - run:
           name: "Check Versions"
           command: |
@@ -26,7 +22,8 @@ jobs:
           command: |
             yarn install
             yarn global add @zowe/cli@latest
-            where zowe
+            cd usr/local/lib
+            ls
             zowe -V
       - run:
           name: "Compile Scripts"
