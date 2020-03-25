@@ -23,6 +23,10 @@ jobs:
           name: "Zowe Version"
           command: |
             yarn global bin
+      - run:
+          name: "Where is the PATH"
+          command: |
+            echo $PATH
       - run: 
           name: "Add to Path"
           command: |
