@@ -16,6 +16,7 @@ jobs:
           name: "Install npm packages"
           command: |
             yarn install
+            yarn add @zowe/cli@latest
       - run:
           name: "Compile Scripts"
           command: |
