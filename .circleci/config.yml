@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Install yarn"
           command: |
-            sudo npm i -g yarn --force --prefix /tmp && yarn install .
+            sudo npm i -g yarn --force --prefix /tmp && yarn install
       - run:
           name: "Install zowe"
           command: |
