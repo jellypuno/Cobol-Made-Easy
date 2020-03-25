@@ -24,7 +24,7 @@ jobs:
       - run: 
           name: "Add to Path"
           command: |
-            echo '/home/circleci/.yarn/bin' >> $BASH_ENV
+            export PATH="$(yarn global bin):$PATH" >> $BASH_ENV
             echo $BASH_ENV
       - run:
           name: "Compile Scripts"
