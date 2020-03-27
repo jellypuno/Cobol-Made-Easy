@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/python:2.7
-      - image: circleci/node:10.0.0
     working_directory: ~/repo
     steps:
       - checkout
@@ -13,6 +12,10 @@ jobs:
             node -v 
             npm -v
             python -V
+      - run:
+          name: "Install IBM_DB"
+          command: |
+            sudo npm install ibm_db --unsafe-perm
       - run:
           name: "Install zowe"
           command: |
