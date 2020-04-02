@@ -22,7 +22,7 @@ jobs:
             sudo npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --ignore-scripts
       - run:
           name: "Install db2 plugin"
-          commad: |
+          command: |
             zowe plugins install @zowe/db2-for-zowe-cli
       - run:
           name: "Install Packages"
