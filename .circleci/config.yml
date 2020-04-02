@@ -27,7 +27,7 @@ jobs:
       - run:
           name: "Install db2 plugin"
           command: |
-            sudo zowe plugins install @zowe/db2-for-zowe-cli
+            sudo zowe plugins install @zowe/db2-for-zowe-cli@4.0.4
       - run:
           name: "Install Packages"
           command: |
