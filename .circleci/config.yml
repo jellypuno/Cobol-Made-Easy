@@ -13,13 +13,17 @@ jobs:
             npm -v
             python -V
       - run:
-          name: "Install IBM_DB"
+          name: "Install node-gyp"
           command: |
-            sudo npm install ibm_db --unsafe-perm
+            sudo npm install -g node-gyp
       - run:
           name: "Install zowe"
           command: |
             sudo npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --ignore-scripts
+      - run:
+          name: "Install db2 plugin"
+          commad: |
+            zowe plugins install @zowe/db2-for-zowe-cli
       - run:
           name: "Install Packages"
           command: |
