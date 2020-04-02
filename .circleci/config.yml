@@ -19,7 +19,7 @@ jobs:
       - run:
           name: "Install ibm_db"
           command: |
-            sudo npm install -g ibm_db --unsafe-perm
+            export IBM_DB_INSTALLER_URL="https://public.dhe.ibm.com/ibmdl/export/pub/software/data/db2/drivers/odbc_cli/linuxx64_odbc_cli.tar.gz"
       - run:
           name: "Install zowe"
           command: |
