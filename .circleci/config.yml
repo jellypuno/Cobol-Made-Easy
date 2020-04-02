@@ -17,6 +17,10 @@ jobs:
           command: |
             sudo npm install -g node-gyp
       - run:
+          name: "Install ibm_db"
+          command: |
+            sudo npm install -g ibm_db --unsafe-perm
+      - run:
           name: "Install zowe"
           command: |
             sudo npm i -g @zowe/cli@latest --@zowe:registry=https://registry.npmjs.org --no-package-lock --force --ignore-scripts
