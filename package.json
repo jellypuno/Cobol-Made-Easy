@@ -5,14 +5,12 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run compile:scripts",
-    "allocate": "node ./scripts/lib/allocate",
-    "delete": "node ./scripts/lib/delete",
-    "generate": "node ./scripts/lib/generate",
-    "upload:cobol": "zowe zos-files upload file-to-data-set \"./build/source.cbl\" \"Z40607.SOURCE(HELOWRLD)\" --zosmf-p ztrial",
-    "build": "npm run generate && npm run upload:cobol && npm run compile:cobol && npm run run:cobol",
+    "generate": "node ./scripts/lib/append && node ./scripts/lib/generate",
+    "upload": "zowe zos-files upload file-to-data-set \"./build/source.cbl\" \"Z40607.SOURCE(CBLSRC)\" --zosmf-p ztrial",
+    "build": "npm run generate && npm run upload && npm run compile:cobol && npm run run:job",
     "compile:cobol": "zowe jobs submit lf \"./build/compiler.jcl\" --directory \"./output\" --zosmf-p ztrial",
+    "run:job": "zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
     "compile:scripts": "tsc --pretty",
-    "run:cobol": "zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
     "start": "npm run upload && npm run build"
   },
   "author": "",

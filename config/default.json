@@ -1,6 +1,45 @@
 {
     "initialization": {
-        "program_name": "HELOWRLD"
+        "program_name": "CBLSRC",
+        "file_control": {
+            "fc_input": [
+                "SELECT {{process.input_file_name}} ASSIGN TO {{process.input_dd_name}}",
+                "  ORGANIZATION IS {{process.organization_type}}",
+                "  ACCESS MODE IS {{process.organization_type}}",
+                "  FILE STATUS IS WS-IN-STAT."
+            ],
+            "fc_output": [
+                "SELECT {{process.output_file_name}} ASSIGN TO {{process.output_dd_name}}",
+                "  ORGANIZATION IS {{process.organization_type}}",
+                "  ACCESS MODE IS {{process.organization_type}}",
+                "  FILE STATUS IS WS-OUT-STAT."
+            ]
+        },
+        "file_section": {
+            "fd_input": [
+               "FD {{process.input_file_name}}",
+               "        RECORD CONTAINS 189 CHARACTERS",
+               "        LABEL RECORDS ARE OMITTED",
+               "        DATA RECORD IS INPUT-REC.",
+               "COPY INREC001."
+            ],
+            "fd_output": [
+                "FD {{process.output_file_name}}",
+                "           RECORD CONTAINS 133 CHARACTERS",
+                "           LABEL RECORDS ARE OMITTED",
+                "           DATA RECORD IS OUTPUT-REC.",
+                "01 OUTPUT-REC        PIC X(133)."
+             ]
+        }
+    },
+    "process": {
+        "input_file_name": "IN001",
+        "output_file_name": "OUT001",
+        "input_dd_name": "INDD01",
+        "output_dd_name": "OUDD01",
+        "organization_type": "SEQUENTIAL",
+        "hlq1": "Z40607",
+        "hlq2": "COBOL.DEMO" 
     },
     "compiler": {
         "job_card":[
@@ -8,7 +47,7 @@
             "          MSGLEVEL=(1,1),NOTIFY=&SYSUID"
         ],
         "job_card2":[
-            "RUNJOBTM JOB ('124300000'),'RUN JOB',MSGCLASS=X,",
+            "RUNJOBTM JOB ('RUNJOBTM'),'RUNJCL',MSGCLASS=X,",
             "             CLASS=A,NOTIFY=&SYSUID"
         ],
         "source_library": "Z40607.SOURCE",
