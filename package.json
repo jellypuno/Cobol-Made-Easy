@@ -8,8 +8,8 @@
     "generate": "node ./scripts/lib/append && node ./scripts/lib/generate",
     "upload": "zowe zos-files upload file-to-data-set \"./build/source.cbl\" \"Z40607.SOURCE(CBLSRC)\" --zosmf-p ztrial",
     "build": "npm run generate && npm run upload && npm run compile:cobol && npm run run:job",
-    "compile:cobol": "zowe jobs submit lf \"./build/compiler.jcl\" --directory \"./output\" --zosmf-p ztrial",
-    "run:job": "zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
+    "compile:cobol": "sudo zowe jobs submit lf \"./build/compiler.jcl\" --directory \"./output\" --zosmf-p ztrial",
+    "run:job": "sudo zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
     "compile:scripts": "tsc --pretty",
     "start": "npm run upload && npm run build"
   },

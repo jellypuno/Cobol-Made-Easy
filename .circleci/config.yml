@@ -31,7 +31,7 @@ jobs:
       - run:
           name: "Build and Test"
           command: |
-            npm run build
+            sudo npm run build
 
 workflows:
   version: 2
