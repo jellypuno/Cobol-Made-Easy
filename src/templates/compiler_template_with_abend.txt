@@ -1,0 +1,57 @@
+{{#compiler.job_card}}
+//{{{.}}}
+{{/compiler.job_card}}
+//*
+//COMPILE  EXEC  PGM=IGYCRCTL,REGION=220M,
+// PARM=(NOTERM,
+// '')
+//*
+//* INSERT A STEPLIB DD HERE IF SCREERUN AND SCREERUN2 ARE NOT IN YOUR
+//* SYSTEM LIBRARY
+//*
+//SYSPRINT DD  SYSOUT=(*)
+//SYSIN    DD  DISP=SHR,
+//             DSN={{compiler.source_library}}({{initialization.program_name}})
+//SYSPUNCH DD  DUMMY
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT2   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT3   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT4   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT5   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT6   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT7   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT8   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT9   DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT10  DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT11  DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT12  DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT13  DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT14  DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSUT15  DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSMDECK DD  UNIT=SYSDA,SPACE=(CYL,(2,2))
+//SYSLIB   DD  DSN=SYS1.MACLIB,DISP=SHR
+//         DD  DISP=SHR,
+//             DSN={{compiler.copy_library}}
+//         DD  DISP=SHR,
+//             DSN={{compiler.source_library}}
+//SYSLIN   DD  DISP=OLD,
+//             DSN={{compiler.object_library}}({{initialization.program_name}})
+//*
+//LKED   EXEC PGM=HEWL,COND=(8,LT,COMPILE),REGION=1024K
+//SYSLIB   DD DSN=CEE.SCEELKED,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSLIN   DD DISP=SHR,
+//            DSN={{compiler.object_library}}({{initialization.program_name}})
+//         DD DDNAME=SYSIN
+//SYSLMOD  DD DISP=(NEW,CATLG,DELETE),SPACE=(TRK,(10,10,1)),
+//            RECFM=U,,DSNTYPE=LIBRARY,
+//            DSN={{compiler.load_library}}({{initialization.program_name}})
+//SYSUT1   DD UNIT=VIO,SPACE=(TRK,(10,10))
+//GO     EXEC PGM=*.LKED.SYSLMOD,COND=((8,LT,COMPILE),(4,LT,LKED)),
+//            REGION=2048K
+//STEPLIB  DD DISP=SHR,
+//            DSN=CEE.SCEERUN
+//SYSPRINT DD SYSOUT=*
+//CEEDUMP  DD SYSOUT=*
+//SYSUDUMP DD SYSOUT=*

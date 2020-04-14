@@ -1,0 +1,227 @@
+/* REXX */
+LOADLIB=''
+LOADHLQ=''
+REPHLQ=''
+MSGDS=''
+MAPDS=''
+MAPCSV=''
+SUBDS=''
+SDSNEXIT=''
+SDSNLOAD=''
+SDSNLO31=''
+SDSNEX31=''
+MAPSTR=''
+PROGRAM='GTXMSKL'
+PLAN='GTXMSKL'
+SSID=''
+MAPPRM=''
+PARMCD=''
+mainRc = 0             /* 0 -> continue processing */
+
+PARSE ARG iMsgType
+
+if syscalls('ON') > 3 then do
+   exit -100
+end
+
+if mainRc = 0 then
+  mainRc = readInput()
+
+ADDRESS TSO
+"ALLOC FI(SYSOUT) SYSOUT REUSE"
+"ALLOC FI(SYSUDUMP) DUMMY REUSE"
+"ALLOC FI(SYSPRINT) SYSOUT REUSE"
+"ALLOC FI(SYSIN) DUMMY REUSE"
+"ALLOC FI(GTMSG) DA('"MSGDS"') SHR"
+"ALLOC FI(MAPCSV) DA('"MAPCSV"') SHR"
+"ALLOC FI(MAPSTR) DA('"LOADHLQ".GTXMAP') SHR"
+"ALLOC FI(MAPSTRF) DUMMY REUSE"
+"ALLOC FI(AUDIT) DA('"REPHLQ".AUDIT') SHR"
+"ALLOC FI(RPT) DA('"REPHLQ".REPT') SHR"
+"ALLOC FI(SUBSET) DA('"SUBDS"') SHR"
+"ALLOC FI(CARDS) DA('"LOADHLQ".CARDS') SHR"
+"ALLOC FI(SYSREC01) DA('"LOADHLQ".RECS01') SHR"
+"ALLOC FI(SYSREC02) DA('"LOADHLQ".RECS02') SHR"
+"ALLOC FI(SYSREC03) DA('"LOADHLQ".RECS03') SHR"
+"ALLOC FI(SYSREC04) DA('"LOADHLQ".RECS04') SHR"
+"ALLOC FI(SYSREC05) DA('"LOADHLQ".RECS05') SHR"
+"ALLOC FI(SYSREC06) DA('"LOADHLQ".RECS06') SHR"
+"ALLOC FI(SYSREC07) DA('"LOADHLQ".RECS07') SHR"
+"ALLOC FI(SYSREC08) DA('"LOADHLQ".RECS08') SHR"
+"ALLOC FI(SYSREC09) DA('"LOADHLQ".RECS09') SHR"
+"ALLOC FI(SYSREC10) DA('"LOADHLQ".RECS10') SHR"
+"ALLOC FI(SYSREC11) DA('"LOADHLQ".RECS11') SHR"
+"ALLOC FI(SYSREC12) DA('"LOADHLQ".RECS12') SHR"
+"ALLOC FI(SYSREC13) DA('"LOADHLQ".RECS13') SHR"
+"ALLOC FI(SYSREC14) DA('"LOADHLQ".RECS14') SHR"
+"ALLOC FI(SYSREC15) DA('"LOADHLQ".RECS15') SHR"
+"ALLOC FI(SYSREC16) DA('"LOADHLQ".RECS16') SHR"
+"ALLOC FI(SYSREC17) DA('"LOADHLQ".RECS17') SHR"
+"ALLOC FI(SYSREC18) DA('"LOADHLQ".RECS18') SHR"
+"ALLOC FI(SYSREC19) DA('"LOADHLQ".RECS19') SHR"
+"ALLOC FI(SYSREC20) DA('"LOADHLQ".RECS20') SHR"
+/**/
+"ALLOC FI(PARMCD) DA('"MAPPRM"') SHR"
+"CALL '"LOADLIB"(GTXMAP)'"
+"FREE FI(PARMCD)"
+ /**/
+call emptystack
+"ALLOC FI(PARMCD) DA('"PARMCD"') SHR"
+queue "RUN PROGRAM("PROGRAM") PLAN("PLAN") LIB('"LOADLIB"')"
+queue "END"
+"DSN SYSTEM("SSID")"
+"FREE FI(PARMCD)"
+call emptystack
+/**/
+
+
+ADDRESS TSO
+"FREE FI(SYSOUT)"
+"FREE FI(SYSUDUMP)"
+"FREE FI(SYSPRINT)"
+"FREE FI(SYSIN)"
+"FREE FI(GTMSG)"
+"FREE FI(MAPCSV)"
+"FREE FI(MAPSTR)"
+"FREE FI(MAPSTRF)"
+"FREE FI(AUDIT)"
+"FREE FI(RPT)"
+"FREE FI(SUBSET)"
+"FREE FI(CARDS)"
+"FREE FI(SYSREC01)"
+"FREE FI(SYSREC02)"
+"FREE FI(SYSREC03)"
+"FREE FI(SYSREC04)"
+"FREE FI(SYSREC05)"
+"FREE FI(SYSREC06)"
+"FREE FI(SYSREC07)"
+"FREE FI(SYSREC08)"
+"FREE FI(SYSREC09)"
+"FREE FI(SYSREC10)"
+"FREE FI(SYSREC11)"
+"FREE FI(SYSREC12)"
+"FREE FI(SYSREC13)"
+"FREE FI(SYSREC14)"
+"FREE FI(SYSREC15)"
+"FREE FI(SYSREC16)"
+"FREE FI(SYSREC17)"
+"FREE FI(SYSREC18)"
+"FREE FI(SYSREC19)"
+"FREE FI(SYSREC20)"
+
+if rc = 0 then
+   Say "Masking Complete"
+exit 0
+
+/*******************************/
+
+  readInput:
+       mainRc = parseParms(iMsgType)
+  return mainRc
+
+/*
+   Parses the input parameters for GIMSMP processing. The input parms
+   are stored in JSON format and will contain the following
+   "key":"value" pairs:
+
+   "CSI":"data set name"
+   "SMPCNTL":"smpe commands to be performed against the csi"
+
+   When unknown KEY found in JSON input, RC 12 returned.
+*/
+parseParms:
+  parseRc = 0
+  inputParams=''
+  parse upper arg inputParams
+    /* Deleting string {" at the begining of JSON input string */
+    parse var inputParams '{"' inputParams
+
+    /* Deleting string }" at the end of JSON input string */
+    parse var inputParams inputParams '"}'
+    /* Parsing input string for all expected Key words.   */
+    do while inputParams <> ' '
+      /* Pick up the key and  its coresponding value */
+      parse var inputParams key '":"' remainder
+      parse var remainder val '","' remainder
+      /*
+        Expected key words:
+
+        CSI - representing csi name
+        SMPCNTL - representing SMPE commands
+
+        The rest is marked as unknown, RC 12 is returned.
+      */
+      select
+        when key = 'LOADLIB' then
+          LOADLIB = val
+        when key = 'LOADHLQ' then
+          LOADHLQ = val
+        when key = 'REPHLQ' then
+          REPHLQ = val
+        when key = 'MSGDS' then
+          MSGDS = val
+        when key = 'MAPPRM' then
+          MAPPRM = val
+        when key = 'PARMCD' then
+          PARMCD = val
+        when key = 'MAPCSV' then
+          MAPCSV = val
+        when key = 'SUBDS' then
+          SUBDS = val
+        when key = 'SDSNEXIT' then
+          SDSNEXIT = val
+        when key = 'SDSNLOAD' then
+          SDSNLOAD = val
+        when key = 'SSID' then
+          SSID = val
+        otherwise do
+          call errorMsg 'Unknown keyword found: ' key
+          parseRc=12
+        end
+      end
+      /* Get the next key:value input parameter. */
+      parse var remainder inputParams
+    end
+
+  return parseRc
+
+/*
+   JSON syntax requires double quote (") characters to be escaped.
+   Therefore, insert a backslash (\) as the escape sequence character
+   preceeding each double quote.
+*/
+escQuote: procedure
+  parse arg msg
+  i = POS('"',msg)                 /* Find the first quote character. */
+  do while i > 0
+    msg = INSERT('\',msg,i-1)    /* Insert the backslash escape char. */
+    p = i+2    /* Set next starting location after the current quote. */
+    i = POS('"',msg,p)             /* Find the next quote character.  */
+  end
+  return msg
+
+/* Empty current stack */
+emptyStack:
+  do while queued()
+    pull
+  end
+  return
+
+debugMsg:
+  parse arg message
+  if debugEnabled <> '' & debugEnabled <> 'false' then do
+    say applName' DEBUG: 'message
+  end
+  return
+
+/*
+  Prints error message to TSO terminal
+
+  Input parameters:
+     msg -- message to be sent. Will be prefixed with
+            the application name and the 'ERROR' keyword
+*/
+errorMsg:
+  parse arg message
+  say applName' ERROR: 'message
+  return
