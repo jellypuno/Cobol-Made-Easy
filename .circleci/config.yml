@@ -26,8 +26,8 @@ jobs:
       - run:
           name: "Create Zowe Profiles"
           command: |
-            zowe -V
-            zowe profiles create zosmf ztrial --host $host --port $port --user $user --pass $pass --ru false
+            sudo zowe -V
+            sudo zowe profiles create zosmf ztrial --host $host --port $port --user $user --pass $pass --ru false
       - run:
           name: "Build and Test"
           command: |
