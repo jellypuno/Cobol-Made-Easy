@@ -28,7 +28,7 @@
 
             IF WS-OUT-STAT NOT EQUAL ZEROES
                SET WS-MSG-CL-IN TO TRUE
-               MOVE WS-IN-STAT TO WS-ERR-CDE
+               MOVE WS-OUT-STAT TO WS-ERR-CDE
                SET WS-PROC-CLOS TO TRUE
                PERFORM Y0001-ERR-HANDLING THRU Y0001-EXIT
             END-IF.
