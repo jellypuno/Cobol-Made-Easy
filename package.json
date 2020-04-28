@@ -11,7 +11,12 @@
     "compile:cobol": "sudo zowe jobs submit lf \"./build/compiler.jcl\" --directory \"./output\" --zosmf-p ztrial",
     "run:job": "sudo zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
     "compile:scripts": "tsc --pretty",
-    "start": "npm run upload && npm run build"
+    "start": "npm run upload && npm run build",
+    "parse": "node ./scripts/lib/parse",
+    "allocate:input": "zowe files cre ps \"Z80428.COVID.GLOBAL\" --rl 189 --bs 27972 --zosmf-p zcobol",
+    "upload:data": "zowe files ul ftds \"./build/countries.txt\" \"Z80428.COVID.GLOBAL\" --zosmf-p zcobol",
+    "submit:job": "zowe jobs submit ds \"Z80428.JCL(CBL0013J)\" --directory \"./output\" --zosmf-p zcobol",
+    "cobol:challenge": "npm run compile:scripts && npm run parse && npm run allocate:input && npm run upload:data && npm run submit:job"
   },
   "author": "",
   "license": "ISC",

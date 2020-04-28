@@ -5,3 +5,7 @@ output/
 build/
 config/default_bkup.json
 scripts/lib/
+covidReport/
+.cobdeps/
+.copybooks/
+.vscode/

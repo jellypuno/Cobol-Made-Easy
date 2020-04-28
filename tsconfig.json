@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "declaration": false,
         "module": "commonjs",
         "moduleResolution": "node",
+        "resolveJsonModule": true,
         "lib": [
             "esnext"
         ],
