@@ -35,7 +35,7 @@ jobs:
       - run:
           name: "Display Output"
           command: |
-            echo "cat ./output/JOB08249/RUN/SYSOUT.txt" 
+            cat ./output/JOB08249/RUN/SYSOUT.txt
 
 workflows:
   version: 2
