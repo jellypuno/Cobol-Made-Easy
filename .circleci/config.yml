@@ -31,7 +31,7 @@ jobs:
       - run:
           name: "Build and Test"
           command: |
-            sudo npm run cobol:challenge
+            sudo npm run submit:job
 
 workflows:
   version: 2
