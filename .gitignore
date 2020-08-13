@@ -9,3 +9,7 @@ covidReport/
 .cobdeps/
 .copybooks/
 .vscode/
+output/
+helper-functions/helper-functions.psm1
+params.json
+CBLCOMP.ps1

@@ -27,11 +27,11 @@ jobs:
           name: "Create Zowe Profiles"
           command: |
             sudo zowe -V
-            sudo zowe profiles create zosmf ztrial --host $host --port $port --user $user --pass $pass --ru false
+            sudo zowe profiles create zosmf zcobol --host $zcobolhost --port $zcobolport --user $zcoboluser --pass $zcobolpass --ru false
       - run:
           name: "Build and Test"
           command: |
-            sudo npm run build
+            sudo npm run cobol:challenge
 
 workflows:
   version: 2

@@ -16,7 +16,8 @@
     "allocate:input": "zowe files cre ps \"Z80428.COVID.GLOBAL\" --rl 189 --bs 27972 --zosmf-p zcobol",
     "upload:data": "zowe files ul ftds \"./build/countries.txt\" \"Z80428.COVID.GLOBAL\" --zosmf-p zcobol",
     "submit:job": "zowe jobs submit ds \"Z80428.JCL(CBL0013J)\" --directory \"./output\" --zosmf-p zcobol",
-    "cobol:challenge": "npm run compile:scripts && npm run parse && npm run allocate:input && npm run upload:data && npm run submit:job"
+    "cobol:challenge_bkup": "npm run compile:scripts && npm run parse && npm run allocate:input && npm run upload:data && npm run submit:job",
+    "cobol:challenge": "npm run compile:scripts && npm run parse && npm run submit:job"
   },
   "author": "",
   "license": "ISC",
