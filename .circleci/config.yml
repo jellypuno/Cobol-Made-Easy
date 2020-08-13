@@ -32,6 +32,10 @@ jobs:
           name: "Build and Test"
           command: |
             sudo npm run submit:job
+      - run:
+          name: "Display Output"
+          command: |
+            echo "./output/JOB08249/RUN/SYSOUT.txt" 
 
 workflows:
   version: 2
