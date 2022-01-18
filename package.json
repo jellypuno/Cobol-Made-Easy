@@ -18,6 +18,7 @@
     "submit:job": "zowe jobs submit ds \"Z80428.JCL(CBL0013J)\" --directory \"./output\" --zosmf-p zcobol",
     "cobol:challenge_bkup": "npm run compile:scripts && npm run parse && npm run allocate:input && npm run upload:data && npm run submit:job",
     "cobol:challenge": "npm run compile:scripts && npm run parse && npm run submit:job"
+
   },
   "author": "",
   "license": "ISC",
