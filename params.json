@@ -1,0 +1,41 @@
+{
+    "bpxbatch": {
+      "jobCard" : {
+        "jobname": "CBL0013J",
+        "account": "Z80428",
+        "username": "Z80428",
+        "notify": "&SYSUID",
+        "class": "A",
+        "priority": "",
+        "msgclass": "A",
+        "msglevel": "(1,1)",
+        "typrun": "",
+        "time": "",
+        "region": "0M"
+      },
+      "keepSpool": "false",
+      "defaultStdout": "\\XBATCH\\STDOUT.txt",
+      "defaultProfile": "zcobol",
+      "outputJcl": "output.jcl"
+    },
+    "cblcomp": {
+      "jobCard" : {
+          "jobname": "CBL0013J",
+          "account": "Z80428",
+          "username": "Z80428",
+          "notify": "&SYSUID",
+          "class": "A",
+          "priority": "",
+          "msgclass": "(1,1)",
+          "msglevel": "",
+          "typrun": "",
+          "time": "",
+          "region": "0M"
+      },
+      "keepSpool": "false",
+      "defaultStdout": "\\RUN\\SYSOUT.txt",
+      "jesmsgs": "\\JES2\\JESMSGLG.txt",
+      "defaultProfile": "xxxx",
+      "outputJcl": "output.jcl"
+    }
+  }
