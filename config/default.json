@@ -38,7 +38,7 @@
         "input_dd_name": "INDD01",
         "output_dd_name": "OUDD01",
         "organization_type": "SEQUENTIAL",
-        "hlq1": "Z40607",
+        "hlq1": "Z80428",
         "hlq2": "COBOL.DEMO" 
     },
     "compiler": {
@@ -50,9 +50,9 @@
             "RUNJOBTM JOB ('RUNJOBTM'),'RUNJCL',MSGCLASS=X,",
             "             CLASS=A,NOTIFY=&SYSUID"
         ],
-        "source_library": "Z40607.SOURCE",
-        "copy_library": "Z40607.COPYLIB",
-        "object_library": "Z40607.OBJ",
-        "load_library": "Z40607.LOADLIB"
+        "source_library": "Z80428.SOURCE",
+        "copy_library": "Z80428.COPYLIB",
+        "object_library": "Z80428.OBJ",
+        "load_library": "Z80428.LOADLIB"
     }
 }

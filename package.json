@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run compile:scripts",
     "generate": "node ./scripts/lib/append && node ./scripts/lib/generate",
-    "upload": "zowe zos-files upload file-to-data-set \"./build/source.cbl\" \"Z40607.SOURCE(CBLSRC)\" --zosmf-p ztrial",
+    "upload": "zowe zos-files upload file-to-data-set \"./build/source.cbl\" \"Z80428.SOURCE(CBLSRC)\" --zosmf-p ztrial",
     "build": "npm run generate && npm run upload && npm run compile:cobol && npm run run:job",
     "compile:cobol": "sudo zowe jobs submit lf \"./build/compiler.jcl\" --directory \"./output\" --zosmf-p ztrial",
     "run:job": "sudo zowe jobs submit lf \"./build/runjob.jcl\" --directory \"./output\" --zosmf-p ztrial",
@@ -18,19 +18,17 @@
     "submit:job": "zowe jobs submit ds \"Z80428.JCL(CBL0013J)\" --directory \"./output\" --zosmf-p zcobol",
     "cobol:challenge_bkup": "npm run compile:scripts && npm run parse && npm run allocate:input && npm run upload:data && npm run submit:job",
     "cobol:challenge": "npm run compile:scripts && npm run parse && npm run submit:job"
-
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@zowe/cli": "6.7.0"
+    "@zowe/cli": "^6.40.7"
   },
   "peerDependencies": {
-    "@zowe/cli": "^6.0.0",
     "@zowe/imperative": "^4.0.0"
   },
   "devDependencies": {
-    "@types/config": "0.0.34",
+    "@types/config": "^0.0.34",
     "@types/mustache": "^0.8.32",
     "@types/node": "^10.11.3",
     "config": "^2.0.1",

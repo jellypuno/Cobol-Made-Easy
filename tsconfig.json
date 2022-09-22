@@ -6,7 +6,8 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "lib": [
-            "esnext"
+            "esnext",
+            "dom"
         ],
         "target": "es2015",
         "strict": true,
@@ -14,9 +15,9 @@
         "preserveConstEnums": true,
         "removeComments": true,
         "inlineSourceMap": true,
-        "typeRoots": [
-            "./node_modules/@types"
-        ]
+        "types": [
+            "node"
+        ],
     },
     "include": [
         "scripts/**/*"
